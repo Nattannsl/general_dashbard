@@ -1,75 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>General Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="app-container">
+        <!-- Cabeçalho e Controles -->
+        <header class="app-header">
+            <h1>General Dashboard</h1>
+            <button id="toggle-layout" class="btn-toggle">📱 Modo Grade (Retrato)</button>
+        </header>
 
-  <div class="container">
-    <header>
-      <h1>📋 General Dashboard</h1>
-      <button id="toggle-layout-btn" class="btn-layout">
-        <span>↔️</span> Modo Paisagem (Kanban)
-      </button>
-    </header>
+        <!-- Barra de Adição e Filtros -->
+        <section class="action-bar">
+            <input type="text" id="task-details" placeholder="Detalhes da Tarefa..." class="input-field">
+            <select id="task-status" class="select-field">
+                <option value="pendencia">📌 Pendência</option>
+                <option value="andamento">🔄 Em Andamento</option>
+                <option value="concluido">✅ Concluído</option>
+            </select>
+            <button id="btn-add" class="btn-primary">+ Adicionar</button>
+        </section>
 
-    <section class="card-form">
-      <h2>Novo Item / Tarefa</h2>
-      <form id="attendance-form">
-        <input type="text" id="client-name" placeholder="Título ou Nome" required autocomplete="off">
-        <input type="text" id="client-desc" placeholder="Descrição ou Detalhes" autocomplete="off">
-        <select id="card-status">
-          <option value="pendencia">📌 Pendência</option>
-          <option value="espera">⏳ Espera</option>
-          <option value="atendimento">🔄 Em Andamento</option>
-          <option value="concluido">✅ Concluído</option>
-        </select>
-        <button type="submit">+ Adicionar</button>
-      </form>
-    </section>
+        <!-- Kanban / Colunas do Dashboard -->
+        <main class="kanban-board" id="kanban-board">
+            <div class="kanban-column" data-status="pendencia">
+                <div class="column-header">📌 Pendência</div>
+                <div class="task-list" id="list-pendencia"></div>
+            </div>
+            <div class="kanban-column" data-status="andamento">
+                <div class="column-header">🔄 Em Andamento</div>
+                <div class="task-list" id="list-andamento"></div>
+            </div>
+            <div class="kanban-column" data-status="concluido">
+                <div class="column-header">✅ Concluído</div>
+                <div class="task-list" id="list-concluido"></div>
+            </div>
+        </main>
+    </div>
 
-    <main id="board" class="board grid-mode">
-      <!-- Coluna Pendência -->
-      <div class="column" id="col-pendencia" 
-           ondragover="allowDrop(event)" 
-           ondragleave="removeDropStyle(event)" 
-           ondrop="dropTask(event, 'pendencia')">
-        <h3>📌 Pendências</h3>
-        <div class="cards-container" id="container-pendencia"></div>
-      </div>
-
-      <!-- Coluna Espera -->
-      <div class="column" id="col-espera" 
-           ondragover="allowDrop(event)" 
-           ondragleave="removeDropStyle(event)" 
-           ondrop="dropTask(event, 'espera')">
-        <h3>⏳ Em Espera</h3>
-        <div class="cards-container" id="container-espera"></div>
-      </div>
-
-      <!-- Coluna Em Andamento -->
-      <div class="column" id="col-atendimento" 
-           ondragover="allowDrop(event)" 
-           ondragleave="removeDropStyle(event)" 
-           ondrop="dropTask(event, 'atendimento')">
-        <h3>🔄 Em Andamento</h3>
-        <div class="cards-container" id="container-atendimento"></div>
-      </div>
-
-      <!-- Coluna Concluído -->
-      <div class="column" id="col-concluido" 
-           ondragover="allowDrop(event)" 
-           ondragleave="removeDropStyle(event)" 
-           ondrop="dropTask(event, 'concluido')">
-        <h3>✅ Concluído</h3>
-        <div class="cards-container" id="container-concluido"></div>
-      </div>
-    </main>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
